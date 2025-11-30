@@ -1,4 +1,4 @@
-import Image from "next/image";
+/*import Image from "next/image";
 
 export default function Home() {
   return (
@@ -61,5 +61,135 @@ export default function Home() {
         </div>
       </main>
     </div>
+  );
+}
+*/
+import Link from "next/link";
+import Image from "next/image";
+import { Music, Calendar, ShieldAlert } from "lucide-react";
+
+export default function Home() {
+  return (
+    <main className="min-h-screen bg-gray-50 pb-10">
+      
+      {/* 1. SECCIÓN DE IMAGEN PRINCIPAL (HERO) */}
+      <section className="relative h-[300px] md:h-[400px] w-full bg-black">
+        <Image 
+          src="/images/hero-cebras.jpg" 
+          alt="Cebras en acción" 
+          fill
+          className="object-cover opacity-50"
+          priority 
+        />
+
+        <div className="absolute inset-0 flex flex-col justify-center items-center text-center p-6 container mx-auto">
+          <div className="bg-white/20 backdrop-blur-md p-4 rounded-full mb-4 shadow-lg border border-white/30">
+             <span className="text-5xl">🦓</span>
+          </div>
+          <h1 className="text-4xl md:text-6xl font-black text-white mb-3 drop-shadow-xl tracking-tight">
+            ¡Hola, Cebra!
+          </h1>
+          <p className="text-xl md:text-2xl text-white font-medium drop-shadow-md max-w-lg leading-relaxed">
+            ¿Listo para ponerle actitud a la ciudad hoy?
+          </p>
+        </div>
+      </section>
+
+      {/* 2. SECCIÓN DE HERRAMIENTAS */}
+      <section className="container mx-auto px-4 relative z-10">
+        
+        {/* Título Flotante */}
+        <div className="-mt-14 mb-4 text-center md:text-left pl-2"> 
+             <span className="bg-yellow-400 text-black font-bold uppercase tracking-widest text-xs px-4 py-2 rounded shadow-md inline-block">
+                Herramientas del Día
+             </span>
+        </div>
+
+        {/* GRID DE 3 COLUMNAS CON GAP REDUCIDO */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+          
+          {/* --- Botón Cancionero --- */}
+          <Link href="/cancionero" className="group bg-white p-4 rounded-2xl shadow-lg border-2 border-white hover:border-yellow-400 transition flex items-center justify-between relative overflow-hidden h-32">
+            
+            {/* 1. Icono Izquierda (Lucide) */}
+            <div className="bg-pink-100 p-3 rounded-xl text-pink-600 group-hover:bg-pink-500 group-hover:text-white transition shadow-sm z-20 shrink-0">
+              <Music size={24} />
+            </div>
+
+            {/* 2. Texto Centro (Flexible) */}
+            <div className="flex-1 px-3 z-20">
+              <h3 className="font-bold text-lg text-gray-900 leading-none mb-1">Cancionero</h3>
+              <p className="text-xs text-gray-500 leading-tight">Repasa letras y ritmos</p>
+            </div>
+
+            {/* 3. Imagen PNG Derecha (Más grande) */}
+            <div className="relative w-24 h-24 -mr-4 transform group-hover:scale-110 transition z-10 opacity-90">
+               <Image 
+                 src="/icons/cancionero.png" 
+                 alt="Música" 
+                 fill 
+                 className="object-contain" 
+               />
+            </div>
+          </Link>
+
+          {/* --- Botón Agenda --- */}
+          <Link href="/noticias" className="group bg-white p-4 rounded-2xl shadow-lg border-2 border-white hover:border-yellow-400 transition flex items-center justify-between relative overflow-hidden h-32">
+            
+            <div className="bg-blue-100 p-3 rounded-xl text-blue-600 group-hover:bg-blue-500 group-hover:text-white transition shadow-sm z-20 shrink-0">
+              <Calendar size={24} />
+            </div>
+
+            <div className="flex-1 px-3 z-20">
+              <h3 className="font-bold text-lg text-gray-900 leading-none mb-1">Agenda</h3>
+              <p className="text-xs text-gray-500 leading-tight">Cronograma semanal</p>
+            </div>
+
+            <div className="relative w-24 h-24 -mr-4 transform group-hover:scale-110 transition z-10 opacity-90">
+               <Image 
+                 src="/icons/agenda.png" 
+                 alt="Calendario" 
+                 fill 
+                 className="object-contain" 
+               />
+            </div>
+          </Link>
+
+          {/* --- Botón Recursos --- */}
+          <Link href="/recursos" className="group bg-white p-4 rounded-2xl shadow-lg border-2 border-white hover:border-yellow-400 transition flex items-center justify-between relative overflow-hidden h-32">
+            
+            <div className="bg-yellow-100 p-3 rounded-xl text-yellow-700 group-hover:bg-yellow-500 group-hover:text-white transition shadow-sm z-20 shrink-0">
+              <ShieldAlert size={24} />
+            </div>
+
+            <div className="flex-1 px-3 z-20">
+              <h3 className="font-bold text-lg text-gray-900 leading-none mb-1">Caja Ayuda</h3>
+              <p className="text-xs text-gray-500 leading-tight">Protocolos y guías</p>
+            </div>
+
+            <div className="relative w-24 h-24 -mr-4 transform group-hover:scale-110 transition z-10 opacity-90">
+               <Image 
+                 src="/icons/recursos (2).png" 
+                 alt="Ayuda" 
+                 fill 
+                 className="object-contain" 
+               />
+            </div>
+          </Link>
+
+        </div>
+      </section>
+
+      {/* 3. FOOTER */}
+      <section className="container mx-auto px-6 mt-10">
+        <div className="bg-black border-l-8 border-yellow-400 text-white p-6 rounded-r-2xl shadow-lg">
+          <h3 className="text-yellow-400 font-bold mb-1 text-sm uppercase tracking-widest">Filosofía Cebra</h3>
+          <p className="text-lg font-medium italic">
+            "La sonrisa debajo de la máscara es tu herramienta más poderosa."
+          </p>
+        </div>
+      </section>
+
+    </main>
   );
 }

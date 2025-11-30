@@ -1,4 +1,45 @@
+import "./globals.css"; // <--- ¡ESTA LÍNEA ES CLAVE!
 import type { Metadata } from "next";
+import { Inter } from "next/font/google";
+import Navbar from "@/components/Navbar"; // <--- 1. IMPORTAMOS EL MENÚ
+import Footer from "@/components/Footer";
+const inter = Inter({ subsets: ["latin"] });
+
+// Configuración para SEO y para que funcione como App móvil
+export const metadata: Metadata = {
+  title: "Cebras La Paz | Portal del Voluntario",
+  description: "Herramientas, agenda y recursos para los Educadores Urbanos de La Paz.",
+  manifest: "/manifest.json", // Conecta el archivo PWA
+  themeColor: "#15b9faff",      // Color de la barra del navegador (Amarillo Cebra)
+  openGraph: {
+    title: "Soy Cebra 🦓 - Portal Oficial",
+    description: "Agenda, cancionero y protocolos para voluntarios.",
+    images: ['/images/hero-cebras.jpg'], // Usa tu imagen principal aquí
+  },
+ 
+};
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html lang="es">
+      <body className={inter.className}>
+        {/* El Navbar va arriba */}
+        <Navbar />
+        
+        {/* El contenido de cada página va al medio */}
+        {children}
+        
+        {/* El Footer va abajo */}
+        <Footer />
+      </body>
+    </html>
+  );
+}
+/*import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
@@ -31,4 +72,4 @@ export default function RootLayout({
       </body>
     </html>
   );
-}
+}*/
