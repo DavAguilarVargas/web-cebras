@@ -118,9 +118,8 @@ const getCategoryStyle = (cat: string) => {
 // --- COMPONENTE: PESTAÑAS ARCOÍRIS ---
 // --- COMPONENTE: SELECTOR DE CATEGORÍA (MODO PÍLDORA) ---
 
-const CategorySelector = ({ categorias, activo, setActivo }) => {
+const CategorySelector = ({ categorias, activo, setActivo }: any) => {
   const [isOpen, setIsOpen] = useState(false);
-
   const rainbowColors = [
     { name: 'Todas', style: 'bg-gray-100 text-gray-600 border-gray-200' },
     { name: 'Rojo', style: 'bg-red-50 text-red-600 border-red-200' },
