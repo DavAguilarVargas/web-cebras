@@ -31,6 +31,33 @@ body {
 
 /* Estilos globales extra */
 body {
-  background-color: #f9fafb; /* Gris muy suave */
+  background-color: #f9fafb;
+  /* Gris muy suave */
   color: #000;
+}
+
+/* cultar la barra de scroll.*/
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slideUp {
+  animation: slideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }

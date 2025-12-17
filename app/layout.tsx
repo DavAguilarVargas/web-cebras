@@ -1,22 +1,44 @@
-import "./globals.css"; // <--- ¡ESTA LÍNEA ES CLAVE!
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next"; // <--- 1. Importamos Viewport
 import { Inter } from "next/font/google";
-import Navbar from "@/components/Navbar"; // <--- 1. IMPORTAMOS EL MENÚ
+import "./globals.css";
+import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+
 const inter = Inter({ subsets: ["latin"] });
 
-// Configuración para SEO y para que funcione como App móvil
+// 2. NUEVA SECCIÓN: Aquí definimos el color de la barra del navegador
+// Lo puse en NEGRO (#000000) para que combine con tu nuevo diseño neutral/plomo.
+export const viewport: Viewport = {
+  themeColor: "#000000", 
+  width: "device-width",
+  initialScale: 1,
+};
+
+// 3. METADATA CORREGIDA
 export const metadata: Metadata = {
-  title: "Cebras La Paz | Portal del Voluntario",
-  description: "Herramientas, agenda y recursos para los Educadores Urbanos de La Paz.",
-  manifest: "/manifest.json", // Conecta el archivo PWA
-  themeColor: "#15b9faff",      // Color de la barra del navegador (Amarillo Cebra)
+  // Esto arregla la advertencia "metadataBase property..."
+  // Usa localhost por ahora, Vercel lo reemplazará automáticamente en producción.
+  metadataBase: new URL("http://localhost:3000"), 
+  
+  title: "Cebras La Paz | Educadores Urbanos",
+  description: "Portal para voluntarios del programa Cebras. Agenda, cancionero y protocolos.",
+  manifest: "/manifest.json",
+  
+  // OpenGraph para cuando compartas el link en WhatsApp/Facebook
   openGraph: {
-    title: "Soy Cebra 🦓 - Portal Oficial",
-    description: "Agenda, cancionero y protocolos para voluntarios.",
-    images: ['/images/hero-cebras.jpg'], // Usa tu imagen principal aquí
+    title: "Cebras La Paz",
+    description: "Portal del Educador Urbano",
+    siteName: "Cebras La Paz",
+    images: [
+      {
+        url: "/icon.png", // Asegúrate de tener esta imagen en la carpeta app/ o public/
+        width: 192,
+        height: 192,
+      },
+    ],
+    locale: "es_BO",
+    type: "website",
   },
- 
 };
 
 export default function RootLayout({
@@ -27,13 +49,8 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body className={inter.className}>
-        {/* El Navbar va arriba */}
         <Navbar />
-        
-        {/* El contenido de cada página va al medio */}
         {children}
-        
-        {/* El Footer va abajo */}
         <Footer />
       </body>
     </html>
@@ -73,3 +90,46 @@ export default function RootLayout({
     </html>
   );
 }*/
+
+//VERSION FINAL
+/*import "./globals.css"; // <--- ¡ESTA LÍNEA ES CLAVE!
+import type { Metadata } from "next";
+import { Inter } from "next/font/google";
+import Navbar from "@/components/Navbar"; // <--- 1. IMPORTAMOS EL MENÚ
+import Footer from "@/components/Footer";
+const inter = Inter({ subsets: ["latin"] });
+
+// Configuración para SEO y para que funcione como App móvil
+export const metadata: Metadata = {
+  title: "Cebras La Paz | Portal del Voluntario",
+  description: "Herramientas, agenda y recursos para los Educadores Urbanos de La Paz.",
+  manifest: "/manifest.json", // Conecta el archivo PWA
+  themeColor: "#15b9faff",      // Color de la barra del navegador (Amarillo Cebra)
+  openGraph: {
+    title: "Soy Cebra 🦓 - Portal Oficial",
+    description: "Agenda, cancionero y protocolos para voluntarios.",
+    images: ['/images/hero-cebras.jpg'], // Usa tu imagen principal aquí
+  },
+ 
+};
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html lang="es">
+      <body className={inter.className}>
+        /{/* El Navbar va arriba */
+        //<Navbar />
+        
+        //{/* El contenido de cada página va al medio */}
+        //{children}
+        
+       // {/* El Footer va abajo */}
+        //<Footer />
+      //</body>
+    //</html>
+  //);
+//}*/
